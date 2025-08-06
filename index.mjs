@@ -26,9 +26,19 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Home
-app.get('/author/new', (req, res) => res.render('newAuthor', { message: null }));
-
+// Home route
+app.get('/', async (req, res) => {
+  try {
+    console.log("🔍 Running home route query...");
+    const [authors] = await pool.query("SELECT * FROM q_authors ORDER BY lastName");
+    const [categories] = await pool.query("SELECT DISTINCT category FROM q_categories ORDER BY category");
+    console.log("✅ Queries successful");
+    res.render('index', { authors, categories });
+  } catch (err) {
+    console.error("❌ Home route failed:", err);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
 // Authors
 app.get('/author/new', (req, res) => res.render('newAuthor', { message: null }));
@@ -168,6 +178,7 @@ app.get('/quote/delete', async (req, res) => {
   }
 });
 
+// Debug route
 app.get('/test-db', async (req, res) => {
   try {
     const [rows] = await pool.query("SHOW TABLES");
@@ -177,5 +188,6 @@ app.get('/test-db', async (req, res) => {
     res.status(500).send("DB connection failed: " + err.message);
   }
 });
+
 // Start server
 app.listen(port, '0.0.0.0', () => console.log(`🚀 App running on port ${port}`));
