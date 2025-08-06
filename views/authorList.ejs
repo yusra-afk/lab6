@@ -1,0 +1,19 @@
+<%- include("partials/header") %>
+
+<div class="container mt-4">
+  <h2>Authors</h2>
+
+  <ul class="list-group">
+    <% for (let i = 0; i < authors.length; i++) { %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span><%= authors[i].firstName %> <%= authors[i].lastName %></span>
+        <span>
+          <a href="/author/edit?authorId=<%= authors[i].authorId %>" class="btn btn-sm btn-warning">Edit</a>
+          <a href="/author/delete?authorId=<%= authors[i].authorId %>" class="btn btn-sm btn-danger" onclick="return confirm('Delete this author?');">Delete</a>
+        </span>
+      </li>
+    <% } %>
+  </ul>
+</div>
+
+<%- include("partials/footer") %>

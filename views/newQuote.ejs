@@ -1,0 +1,38 @@
+<%- include("partials/header") %>
+
+<div class="container mt-4">
+  <h2>Add New Quote</h2>
+
+  <% if (message) { %>
+    <div class="alert alert-success"><%= message %></div>
+  <% } %>
+
+  <form method="POST" action="/quote/new">
+    <div class="mb-3">
+      <label>Quote:</label>
+      <textarea class="form-control" name="quote" required></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label>Author:</label>
+      <select class="form-control" name="authorId" required>
+        <% authors.forEach(author => { %>
+          <option value="<%= author.authorId %>"><%= author.firstName %> <%= author.lastName %></option>
+        <% }) %>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label>Category:</label>
+      <select class="form-control" name="categoryId" required>
+        <% categories.forEach(cat => { %>
+          <option value="<%= cat.categoryId %>"><%= cat.category %></option>
+        <% }) %>
+      </select>
+    </div>
+
+    <button class="btn btn-success">Add Quote</button>
+  </form>
+</div>
+
+<%- include("partials/footer") %>

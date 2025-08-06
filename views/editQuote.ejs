@@ -1,0 +1,40 @@
+<%- include("partials/header") %>
+
+<div class="container mt-4">
+  <h2>Edit Quote</h2>
+
+  <form method="POST" action="/quote/edit">
+    <input type="hidden" name="quoteId" value="<%= quoteInfo.quoteId %>">
+
+    <div class="mb-3">
+      <label>Quote:</label>
+      <textarea class="form-control" name="quote" required><%= quoteInfo.quote %></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label>Author:</label>
+      <select class="form-control" name="authorId" required>
+        <% authors.forEach(author => { %>
+          <option value="<%= author.authorId %>" <% if (author.authorId === quoteInfo.authorId) { %>selected<% } %>>
+            <%= author.firstName %> <%= author.lastName %>
+          </option>
+        <% }) %>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label>Category:</label>
+      <select class="form-control" name="categoryId" required>
+        <% categories.forEach(cat => { %>
+          <option value="<%= cat.categoryId %>" <% if (cat.categoryId === quoteInfo.categoryId) { %>selected<% } %>>
+            <%= cat.category %>
+          </option>
+        <% }) %>
+      </select>
+    </div>
+
+    <button class="btn btn-primary">Update Quote</button>
+  </form>
+</div>
+
+<%- include("partials/footer") %>

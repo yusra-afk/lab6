@@ -1,0 +1,23 @@
+<%- include("partials/header") %>
+
+<div class="container mt-4">
+  <h1 class="mb-4">Famous Quotes - Admin Panel</h1>
+
+  <form action="/author/new" class="mb-2">
+    <button class="btn btn-primary">Add Author</button>
+  </form>
+
+  <form action="/quote/new" class="mb-2">
+    <button class="btn btn-success">Add Quote</button>
+  </form>
+
+  <form action="/authors" class="mb-2">
+    <button class="btn btn-info">List Authors</button>
+  </form>
+
+  <form action="/quotes">
+    <button class="btn btn-warning">List Quotes</button>
+  </form>
+</div>
+
+<%- include("partials/footer") %>

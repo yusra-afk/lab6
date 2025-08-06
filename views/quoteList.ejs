@@ -1,0 +1,22 @@
+<%- include("partials/header") %>
+
+<div class="container mt-4">
+  <h2>Quotes</h2>
+
+  <ul class="list-group">
+    <% quotes.forEach(q => { %>
+      <li class="list-group-item">
+        <blockquote class="blockquote mb-1">
+          <p><%= q.quote %></p>
+          <footer class="blockquote-footer">
+            <%= q.firstName %> <%= q.lastName %> — <em><%= q.category %></em>
+          </footer>
+        </blockquote>
+        <a href="/quote/edit?quoteId=<%= q.quoteId %>" class="btn btn-sm btn-warning">Edit</a>
+        <a href="/quote/delete?quoteId=<%= q.quoteId %>" class="btn btn-sm btn-danger" onclick="return confirm('Delete this quote?');">Delete</a>
+      </li>
+    <% }) %>
+  </ul>
+</div>
+
+<%- include("partials/footer") %>

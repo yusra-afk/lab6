@@ -1,0 +1,34 @@
+<%- include("partials/header") %>
+
+<div class="container mt-4">
+  <h2>Edit Author</h2>
+
+  <form method="POST" action="/author/edit">
+    <input type="hidden" name="authorId" value="<%= authorInfo[0].authorId %>">
+
+    <div class="mb-3">
+      <label>First Name:</label>
+      <input type="text" class="form-control" name="fName" value="<%= authorInfo[0].firstName %>" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Last Name:</label>
+      <input type="text" class="form-control" name="lName" value="<%= authorInfo[0].lastName %>" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Date of Birth:</label>
+      <input type="date" class="form-control" name="dob" value="<%= authorInfo[0].dobISO %>" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Sex:</label><br>
+      <input type="radio" name="sex" value="M" <% if (authorInfo[0].sex === 'M') { %>checked<% } %>> Male
+      <input type="radio" name="sex" value="F" <% if (authorInfo[0].sex === 'F') { %>checked<% } %>> Female
+    </div>
+
+    <button class="btn btn-primary">Update Author</button>
+  </form>
+</div>
+
+<%- include("partials/footer") %>

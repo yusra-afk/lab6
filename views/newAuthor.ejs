@@ -1,0 +1,32 @@
+<%- include("partials/header") %>
+
+<div class="container mt-4">
+  <h2>Add New Author</h2>
+
+  <% if (message) { %>
+    <div class="alert alert-success"><%= message %></div>
+  <% } %>
+
+  <form method="POST" action="/author/new">
+    <div class="mb-3">
+      <label>First Name:</label>
+      <input type="text" class="form-control" name="fName" required>
+    </div>
+    <div class="mb-3">
+      <label>Last Name:</label>
+      <input type="text" class="form-control" name="lName" required>
+    </div>
+    <div class="mb-3">
+      <label>Date of Birth:</label>
+      <input type="date" class="form-control" name="birthDate" required>
+    </div>
+    <div class="mb-3">
+      <label>Sex:</label><br>
+      <input type="radio" name="sex" value="M" checked> Male
+      <input type="radio" name="sex" value="F"> Female
+    </div>
+    <button class="btn btn-primary">Add Author</button>
+  </form>
+</div>
+
+<%- include("partials/footer") %>
