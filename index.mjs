@@ -27,22 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Home
-app.get('/', async (req, res) => {
-  try {
-    console.log("🔍 Testing authors query...");
-    const [authors] = await pool.query("SELECT * FROM q_authors ORDER BY lastName");
-    console.log("✅ Authors query successful");
+app.get('/author/new', (req, res) => res.render('newAuthor', { message: null }));
 
-    console.log("🔍 Testing categories query...");
-    const [categories] = await pool.query("SELECT DISTINCT category FROM q_categories ORDER BY category");
-    console.log("✅ Categories query successful");
-
-    res.render('index', { authors, categories });
-  } catch (err) {
-    console.error("❌ Home route failed:", err.message);
-    res.status(500).send("Internal Server Error");
-  }
-});
 
 // Authors
 app.get('/author/new', (req, res) => res.render('newAuthor', { message: null }));
