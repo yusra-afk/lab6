@@ -182,5 +182,14 @@ app.get('/quote/delete', async (req, res) => {
   }
 });
 
+app.get('/test-db', async (req, res) => {
+  try {
+    const [rows] = await pool.query("SHOW TABLES");
+    res.send("✅ Connected to DB. Tables: " + JSON.stringify(rows));
+  } catch (err) {
+    console.error("❌ DB connection failed:", err.message);
+    res.status(500).send("DB connection failed: " + err.message);
+  }
+});
 // Start server
 app.listen(port, '0.0.0.0', () => console.log(`🚀 App running on port ${port}`));
