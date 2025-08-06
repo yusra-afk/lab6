@@ -105,4 +105,4 @@ app.get('/quote/delete', async (req, res) => {
   res.redirect('/quotes');
 });
 
-app.listen(port, () => console.log(`App running at http://localhost:${port}`));
+app.listen(port, '0.0.0.0', () => console.log(`App running on port ${port}`));
